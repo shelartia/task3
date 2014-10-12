@@ -1,0 +1,62 @@
+﻿@model WithMongo.Models.UserInfo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>User</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Photo)
+    </div>
+    <div>
+        @{
+                if (Model.Photo != null)
+                {
+                    string imageBase64 = Convert.ToBase64String(Model.Photo);
+                    string imageSrc = string.Format("data:image/gif;base64,{0}", imageBase64);
+                    <img src="@imageSrc" width="150" height="150" />
+                }
+                else{
+                    <div>None</div>
+                }
+            }
+    </div>
+
+    
+</fieldset>
+
+@using (Html.BeginForm()) {
+    <div>
+        <div>
+          <input type="submit" value="Delete" /> 
+        </div>
+        <div> 
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+}
